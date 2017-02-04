@@ -1,0 +1,9 @@
+.App {
+    display: block;
+    width: 95%;
+    height: 80%;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #E4FF44;
+    border-radius: 5px;
+}

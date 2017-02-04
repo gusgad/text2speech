@@ -1,0 +1,14 @@
+.LanguageSelector-container {
+    width: 100%;
+    height: 10%;
+    background-color: #FFEFEF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LanguageSelector-input {
+    width: 80%;
+    height: 20px;
+    border-radius: 3px;
+}

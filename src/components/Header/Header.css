@@ -1,0 +1,13 @@
+.Header-container {
+    width: 100%;
+    height: 15%;
+    background-color: brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Header-tag {
+    font-family: 'Pacifico', cursive;
+    font-size: 28px;
+}
