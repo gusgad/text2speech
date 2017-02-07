@@ -115,4 +115,5 @@ input[type=range].Options-input:focus::-ms-fill-upper {
     font-size: 14px;
     border: none;
     outline: none;
+    resize: none;
 }

@@ -17,8 +17,10 @@
     outline: none;
     font-family: 'Pacifico', cursive;
     font-size: 20px;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
 }
 
 .Controls-button:hover {
-    
+    background-color: #FFFF75;
 }
