@@ -7,7 +7,7 @@ export const Options = (props) => (
         <input className='Options-input' name='rate' type='range' min='0' max='3' value={props.rateValue} step='0.1' onChange={props.rateChange} />
     
         <label className='Options-label'>Pitch:</label>
-        <input className='Options-input' name='pitch' type='range' min='0' max='2' value={props.pitchValue} step='0.1'/>
+        <input className='Options-input' name='pitch' type='range' min='0' max='2' value={props.pitchValue} step='0.1' onChange={props.rateChange} />
     
         <textarea className='Options-textarea' name='text' placeholder='Type and press "Speak!"'></textarea>
     </div>

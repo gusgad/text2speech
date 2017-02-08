@@ -15,20 +15,29 @@ class App extends Component {
       };
       
       this.rateChange = this.rateChange.bind(this);
+      this.langChange = this.langChange.bind(this);
   }
   
   rateChange(e) {
+      let rangeType = `${e.target.name}Value`;
+      let rangeValue = e.target.value;
       this.setState({
-          rateValue: parseFloat(e.target.value)
+          [rangeType]: parseFloat(rangeValue)
       });
-      console.log(parseFloat(e.target.value));
+      console.log('rate val:', parseFloat(e.target.value));
   }
+
+
+  langChange(e) {
+      console.log('sup')
+  }
+
   
   render() {
     return (
       <div className="App">
         <Header />
-        <LanguageSelector value='mango' lang={this.state.lang} />
+        <LanguageSelector lang={this.state.lang} langeChange={this.langChange}/>
         <Options rateValue={this.state.rateValue} pitchValue={this.state.pitchValue} rateChange={this.rateChange} />
         <Controls />
       </div>
