@@ -9,7 +9,7 @@ export const Options = (props) => (
         <label className='Options-label'>Pitch:</label>
         <input className='Options-input' name='pitch' type='range' min='0' max='2' value={props.pitchValue} step='0.1' onChange={props.rateChange} />
     
-        <textarea className='Options-textarea' name='text' placeholder='Type and press "Speak!"'></textarea>
+        <textarea className='Options-textarea' name='text' placeholder='Type and press "Speak!"' defaultValue={props.textareaValue} onChange={props.textareaChange}></textarea>
     </div>
 )
 
