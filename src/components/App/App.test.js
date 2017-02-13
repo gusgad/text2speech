@@ -1,35 +1,67 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {shallow, mount} from 'enzyme';
+import sinon from 'sinon';
 import App from './App';
 import {Options} from '../Options/Options';
 import {LanguageSelector} from '../LangSelector/LangSelector';
+import {Controls} from '../Controls/Controls';
 
 
-it('renders Options component', () => {
+describe('<Options />', () => {
     const selector = mount(
         <Options rateValue={1.5} pitchValue={1.6} textareaValue={'Test text'}/>
     );
-     
-    expect(selector.find('.Options-textarea').type()).toEqual('textarea');
+    it('receives props', () => {
+        expect(selector.prop('rateValue')).toBe(1.5);
+        expect(selector.prop('pitchValue')).toBe(1.6);
+        expect(selector.prop('textareaValue')).toBe('Test text');
+    });
     
-    expect(selector.prop('rateValue')).toBe(1.5);
-    expect(selector.prop('pitchValue')).toBe(1.6);
-    expect(selector.prop('textareaValue')).toBe('Test text');
+    it('renders inputs', () => {
+        expect(selector.find('.Options-textarea').type()).toEqual('textarea');
+    });
 });
 
-it('renders LangSelector component', () => {
+describe('<LangSelector/>', () => {
     let lang = [
-        {name: 'Google Deutsch', lang: 'de-DE'},
+        {name: 'native', lang: ''},
         {name: 'Google US English', lang: 'en-US'}
     ];
     const selector = mount(
         <LanguageSelector lang={lang} selectedLang={'EN'} />
     );
-     
-    expect(selector.find('.LanguageSelector-input').type()).toEqual('select');
-    expect(selector.prop('lang')).toBe(lang);
-    expect(selector.prop('selectedLang')).toBe('EN');
-})
+    
+    it('correct input types', () => {
+        expect(selector.find('.LanguageSelector-input').type()).toEqual('select');
+    });
+    
+    it('renders options correctly', () => {
+        expect(selector.find('.LanguageSelector-input').text()).toEqual('Select a language US English - (en-US)');
+    });
+    
+    it('receives props', () => {
+        expect(selector.prop('lang')).toBe(lang);
+        expect(selector.prop('selectedLang')).toBe('EN');
+    });
+});
+
+describe('<Controls />', () => {
+    const selector = mount(
+        <Controls />
+    );
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 

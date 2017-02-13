@@ -16,7 +16,7 @@ class App extends Component {
           textareaValue: ''
       };
       
-      this.utterance = new SpeechSynthesisUtterance()
+      this.utterance = new SpeechSynthesisUtterance();
       
       this.rateChange = this.rateChange.bind(this);
       this.langChange = this.langChange.bind(this);
