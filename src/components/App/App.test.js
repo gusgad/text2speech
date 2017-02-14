@@ -12,6 +12,11 @@ describe('<Options />', () => {
     const selector = mount(
         <Options rateValue={1.5} pitchValue={1.6} textareaValue={'Test text'}/>
     );
+    
+    it('renders without errors', () => {
+        expect(selector.length).toEqual(1);
+    });
+    
     it('receives props', () => {
         expect(selector.prop('rateValue')).toBe(1.5);
         expect(selector.prop('pitchValue')).toBe(1.6);
@@ -32,6 +37,10 @@ describe('<LangSelector/>', () => {
         <LanguageSelector lang={lang} selectedLang={'EN'} />
     );
     
+    it('renders without errors', () => {
+        expect(selector.length).toEqual(1);
+    });
+    
     it('correct input types', () => {
         expect(selector.find('.LanguageSelector-input').type()).toEqual('select');
     });
@@ -50,6 +59,20 @@ describe('<Controls />', () => {
     const selector = mount(
         <Controls />
     );
+        
+    it('renders without errors', () => {
+        expect(selector.length).toEqual(1);
+    });
+    
+    it('renders correct buttons', () => {
+        expect(selector.find('.Controls-button').at(0).text()).toEqual('Stop');
+        
+        expect(selector.find('.Controls-button').at(1).text()).toEqual('Speak!');
+        
+        selector.find('.Controls-container').children().forEach(function (node) {
+          expect(node.hasClass('Controls-button')).toEqual(true);
+        });
+    });
 });
 
 

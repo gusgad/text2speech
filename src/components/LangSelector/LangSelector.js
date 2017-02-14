@@ -18,4 +18,5 @@ export const LanguageSelector = (props) => (
 
 LanguageSelector.propTypes = {
     lang: React.PropTypes.array,
+    selectedLang: React.PropTypes.string
 };
