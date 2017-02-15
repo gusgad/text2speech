@@ -11,6 +11,7 @@ class App extends Component {
       this.state = {
           lang: [],
           selectedLang: '',
+          langWarning: false,
           rateValue: 1,
           pitchValue: 1,
           textareaValue: ''
@@ -31,7 +32,9 @@ class App extends Component {
       this.setState({
           [rangeType]: parseFloat(rangeValue)
       });
-      console.log('rate val:', parseFloat(e.target.value));
+      
+      this.utterance.rate = this.state.rateValue;
+      this.utterance.pitch = this.state.pitchValue;
   }
 
 
@@ -43,32 +46,44 @@ class App extends Component {
               return null;
           }
       });
-      console.log(selectedVoice)
+      
       this.utterance.voice = selectedVoice;
-      console.log(e.target.value)
       this.setState({
           selectedLang: e.target.value
       });
-      if (e.target.value === '') {
-          console.log('porco dio')
-      }
   }
     
   textareaChange(e) {
-      this.utterance.text = e.target.value;
+      this.setState({
+          textareaValue: e.target.value
+      });
+      this.utterance.text = this.state.textareaValue;
   }
     
   generateVoices() {
       let voices = speechSynthesis.getVoices();
-      console.log(voices)
       this.setState({
           lang: voices
       });
   }
     
   speak(e) {
-      let utterance = this.utterance;
-      speechSynthesis.speak(utterance);
+      if (e.target.className.split(' ')[1] === 'stop') {
+          speechSynthesis.cancel();
+      } else if (e.target.className.split(' ')[1] === 'start') {
+          let utterance = this.utterance;
+          speechSynthesis.speak(utterance);
+      }
+      
+      if (this.state.selectedLang === '') {
+          this.setState({
+              langWarning: true
+          });
+      } else {
+          this.setState({
+              langWarning: false
+          });
+      } 
   }
 
   componentDidMount() {
@@ -79,7 +94,7 @@ class App extends Component {
       return (
           <div className="App">
             <Header />
-            <LanguageSelector lang={this.state.lang} selectedLang={this.state.selectedLang} langChange={this.langChange}/>
+            <LanguageSelector lang={this.state.lang} selectedLang={this.state.selectedLang} langWarning={this.state.langWarning} langChange={this.langChange}/>
             <Options rateValue={this.state.rateValue} pitchValue={this.state.pitchValue} rateChange={this.rateChange} textareaValue={this.state.textareaValue} textareaChange={this.textareaChange} />
             <Controls speak={this.speak}/>
           </div>

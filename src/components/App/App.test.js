@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {shallow, mount} from 'enzyme';
+import {shallow, mount, render} from 'enzyme';
 import sinon from 'sinon';
-import App from './App';
 import {Options} from '../Options/Options';
 import {LanguageSelector} from '../LangSelector/LangSelector';
 import {Controls} from '../Controls/Controls';
+
 
 
 describe('<Options />', () => {
