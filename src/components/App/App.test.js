@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import shortid from 'shortid';
 import {shallow, mount, render} from 'enzyme';
 import sinon from 'sinon';
 import {Options} from '../Options/Options';
