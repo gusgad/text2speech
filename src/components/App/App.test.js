@@ -56,8 +56,9 @@ describe('<LangSelector/>', () => {
 });
 
 describe('<Controls />', () => {
+    const speak = sinon.spy();
     const selector = mount(
-        <Controls />
+        <Controls speak={speak} />
     );
         
     it('renders without errors', () => {
@@ -72,6 +73,11 @@ describe('<Controls />', () => {
         selector.find('.Controls-container').children().forEach(function (node) {
           expect(node.hasClass('Controls-button')).toEqual(true);
         });
+    });
+    
+    it('simulates click events', () => {
+        selector.find('.start').simulate('click');
+        expect(speak.calledOnce).toEqual(true);
     });
 });
 

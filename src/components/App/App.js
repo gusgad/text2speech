@@ -17,6 +17,7 @@ class App extends Component {
           textareaValue: ''
       };
       
+      // Instantiating the utterance
       this.utterance = new SpeechSynthesisUtterance();
       
       this.rateChange = this.rateChange.bind(this);
@@ -36,7 +37,6 @@ class App extends Component {
       this.utterance.rate = this.state.rateValue;
       this.utterance.pitch = this.state.pitchValue;
   }
-
 
   langChange(e) {
       let selectedVoice = this.state.lang.find(lang => {
@@ -83,7 +83,9 @@ class App extends Component {
           this.setState({
               langWarning: false
           });
-      } 
+      }
+      
+      return 'COOl';
   }
 
   componentDidMount() {
