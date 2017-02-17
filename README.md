@@ -1,9 +1,8 @@
+[![Build Status](https://travis-ci.org/gusgad/text2speech.svg?branch=master)](https://travis-ci.org/gusgad/text2speech)
+
 ## text2speech
 
 Convert your text into speech in 20 different languages with the ability to set custom voice pitch and rate.
-
-### App Icon | Icon
-![App icon](/images/web-icon.png?raw=true)
 
 
 ![Screenshot](/images/screenshot.png?raw=true)
