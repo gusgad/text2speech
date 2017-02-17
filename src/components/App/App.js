@@ -24,7 +24,7 @@ class App extends Component {
       this.langChange = this.langChange.bind(this);
       this.textareaChange = this.textareaChange.bind(this);
       this.generateVoices = this.generateVoices.bind(this);
-      this.speak = this.speak.bind(this);
+      this.voiceStart = this.voiceStart.bind(this);
   }
   
   rateChange(e) {
@@ -67,7 +67,7 @@ class App extends Component {
       });
   }
     
-  speak(e) {
+  voiceStart(e) {
       if (e.target.className.split(' ')[1] === 'stop') {
           speechSynthesis.cancel();
       } else if (e.target.className.split(' ')[1] === 'start') {
@@ -96,9 +96,9 @@ class App extends Component {
       return (
           <div className="App">
             <Header />
-            <LanguageSelector lang={this.state.lang} selectedLang={this.state.selectedLang} langWarning={this.state.langWarning} langChange={this.langChange}/>
+            <LanguageSelector lang={this.state.lang} selectedLang={this.state.selectedLang} langWarning={this.state.langWarning} langChange={this.langChange} />
             <Options rateValue={this.state.rateValue} pitchValue={this.state.pitchValue} rateChange={this.rateChange} textareaValue={this.state.textareaValue} textareaChange={this.textareaChange} />
-            <Controls speak={this.speak}/>
+            <Controls voiceStart={this.voiceStart} />
           </div>
         );
      }

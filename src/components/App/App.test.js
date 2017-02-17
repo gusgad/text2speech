@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import shortid from 'shortid';
 import {shallow, mount, render} from 'enzyme';
 import sinon from 'sinon';
+import App from './App';
 import {Options} from '../Options/Options';
 import {LanguageSelector} from '../LangSelector/LangSelector';
 import {Controls} from '../Controls/Controls';
 
 
-
 describe('<Options />', () => {
+    const rateChange = sinon.spy();
+    const textareaChange = sinon.spy();
+    
     const selector = mount(
-        <Options rateValue={1.5} pitchValue={1.6} textareaValue={'Test text'}/>
+        <Options rateValue={1.5} pitchValue={1.6} textareaValue={'Test text'} rateChange={rateChange} textareaChange={textareaChange} />
     );
     
     it('renders without errors', () => {
@@ -27,15 +30,28 @@ describe('<Options />', () => {
     it('renders inputs', () => {
         expect(selector.find('.Options-textarea').type()).toEqual('textarea');
     });
+    
+    it('simulates change events on range inputs', () => {
+        selector.find('.Options-input').at(0).simulate('change');
+        selector.find('.Options-input').at(1).simulate('change');
+        expect(rateChange.calledTwice).toEqual(true);
+    });
+    
+    it('simulates change events on textarea', () => {
+        selector.find('.Options-textarea').simulate('change');
+        expect(textareaChange.calledOnce).toEqual(true);
+    });
 });
 
 describe('<LangSelector/>', () => {
-    let lang = [
+    const langChange = sinon.spy();
+    
+    const lang = [
         {name: 'native', lang: ''},
         {name: 'Google US English', lang: 'en-US'}
     ];
     const selector = mount(
-        <LanguageSelector lang={lang} selectedLang={'EN'} />
+        <LanguageSelector lang={lang} selectedLang={'EN'} langChange={langChange} />
     );
     
     it('renders without errors', () => {
@@ -54,12 +70,17 @@ describe('<LangSelector/>', () => {
         expect(selector.prop('lang')).toBe(lang);
         expect(selector.prop('selectedLang')).toBe('EN');
     });
+    
+    it('simulates change events', () => {
+        selector.find('.LanguageSelector-input').simulate('change');
+        expect(langChange.calledOnce).toEqual(true);
+    });
 });
 
 describe('<Controls />', () => {
-    const speak = sinon.spy();
+    const voiceStart = sinon.spy();
     const selector = mount(
-        <Controls speak={speak} />
+        <Controls voiceStart={voiceStart} />
     );
         
     it('renders without errors', () => {
@@ -78,20 +99,6 @@ describe('<Controls />', () => {
     
     it('simulates click events', () => {
         selector.find('.start').simulate('click');
-        expect(speak.calledOnce).toEqual(true);
+        expect(voiceStart.calledOnce).toEqual(true);
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
