@@ -84,8 +84,6 @@ class App extends Component {
               langWarning: false
           });
       }
-      
-      return 'COOl';
   }
 
   componentDidMount() {
